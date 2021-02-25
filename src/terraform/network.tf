@@ -26,17 +26,18 @@ resource "azurerm_subnet" "mySubnet" {
 # Create NIC 1 
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
 
-resource "azurerm_network_interface" "myNic1" {
-  name                = "${var.nombre}-vnic1"  
+resource "azurerm_network_interface" "myNic" {
+  for_each = var.lab2
+  name                = "${each.key}-vnic"  
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
-    ip_configuration {
-    name                           = "myipconfiguration1"
+  ip_configuration {
+    name                           = "${each.key}-ipconf"
     subnet_id                      = azurerm_subnet.mySubnet.id 
     private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.10"
-    public_ip_address_id           = azurerm_public_ip.myPublicIp1.id
+    private_ip_address             = each.value.privip
+    public_ip_address_id           = azurerm_public_ip.myPublicIp[each.key].id
   }
 
     tags = {
@@ -45,114 +46,17 @@ resource "azurerm_network_interface" "myNic1" {
 
 }
 
-resource "azurerm_network_interface" "myNic2" {
-  name                = "${var.nombre}-vnic2"  
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-
-    ip_configuration {
-    name                           = "myipconfiguration2"
-    subnet_id                      = azurerm_subnet.mySubnet.id 
-    private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.11"
-    public_ip_address_id           = azurerm_public_ip.myPublicIp2.id
-  }
-
-    tags = {
-        environment = "CP2"
-    }
-
-}
-
-resource "azurerm_network_interface" "myNic3" {
-  name                = "${var.nombre}-vnic3"  
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-
-    ip_configuration {
-    name                           = "myipconfiguration3"
-    subnet_id                      = azurerm_subnet.mySubnet.id 
-    private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.12"
-    public_ip_address_id           = azurerm_public_ip.myPublicIp3.id
-  }
-
-    tags = {
-        environment = "CP2"
-    }
-
-}
-
-resource "azurerm_network_interface" "myNic4" {
-  name                = "${var.nombre}-vnic4"  
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-
-    ip_configuration {
-    name                           = "myipconfiguration4"
-    subnet_id                      = azurerm_subnet.mySubnet.id 
-    private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.13"
-    public_ip_address_id           = azurerm_public_ip.myPublicIp4.id
-  }
-
-    tags = {
-        environment = "CP2"
-    }
-
-}
 
 # IP pública
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
 
-resource "azurerm_public_ip" "myPublicIp1" {
-  name                = "${var.nombre}-vmip1"
+resource "azurerm_public_ip" "myPublicIp" {
+  for_each = var.lab2
+  name                = "${each.key}-vmip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
-  domain_name_label   = "${var.nombre}master"
-  sku                 = "Basic"
-
-    tags = {
-        environment = "CP2"
-    }
-
-}
-
-resource "azurerm_public_ip" "myPublicIp2" {
-  name                = "${var.nombre}-vmip2"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
-  domain_name_label   = "${var.nombre}worker1"
-  sku                 = "Basic"
-
-    tags = {
-        environment = "CP2"
-    }
-
-}
-
-resource "azurerm_public_ip" "myPublicIp3" {
-  name                = "${var.nombre}-vmip3"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
-  domain_name_label   = "${var.nombre}worker2"
-  sku                 = "Basic"
-
-    tags = {
-        environment = "CP2"
-    }
-
-}
-
-resource "azurerm_public_ip" "myPublicIp4" {
-  name                = "${var.nombre}-vmip4"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
-  domain_name_label   = "${var.nombre}nfs"
+  domain_name_label   = format("%s%s", var.nombre, each.key)
   sku                 = "Basic"
 
     tags = {

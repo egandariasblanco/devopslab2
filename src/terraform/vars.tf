@@ -7,11 +7,30 @@ variable "location" {
 variable "vm_size" {
   type = string
   description = "Tamaño de la máquina virtual"
-  default = "Standard_D1_v2" # 3.5 GB, 1 CPU 
+  default = "Standard_A2_v2" # 4 GB, 2 CPU 
 }
 
 variable "nombre" {
   type = string
   description = "Prefijo de nombre para todos los recursos creados"
   default = "kubendika"
+}
+
+variable "lab2" {
+  description = "Map de las configuraciones."
+  type        = map
+  default     = {
+    master = {
+      privip = "10.0.1.10"
+      size = "Standard_A2_v2"
+    },
+    worker1 = {
+      privip = "10.0.1.11"
+      "size" = "Standard_A1_v2"
+    },
+    worker2 = {
+      privip = "10.0.1.12"
+      size = "Standard_A1_v2"
+    }
+  }
 }
