@@ -4,12 +4,6 @@ variable "location" {
   default = "West Europe"
 }
 
-variable "vm_size" {
-  type = string
-  description = "Tamaño de la máquina virtual"
-  default = "Standard_A2_v2" # 4 GB, 2 CPU 
-}
-
 variable "nombre" {
   type = string
   description = "Prefijo de nombre para todos los recursos creados"
