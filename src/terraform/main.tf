@@ -9,7 +9,8 @@ terraform {
   }
 }
 
-# crea un service principal y rellena los siguientes datos para autenticar
+# Después de crear el service principal se copian los datos
+# para que el provider pueda conectarse
 provider "azurerm" {
   features {}
   subscription_id = "aaaaaaaaaaaaaaaaaaaa"

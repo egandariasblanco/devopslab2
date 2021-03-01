@@ -1,10 +1,48 @@
 ## Instalación de terraform
 https://learn.hashicorp.com/tutorials/terraform/install-cli
 
-Lo dejamos es 4 máquinas con la siguiente distribución de recursos:
-- Master: 2 CPU 4GB RAM 20 GB DISCO (Standard_A2_v2)
-- Worker1: 1 CPU 2GB RAM 10 GB DISCO (Standard_A1_v2)
-- Worker2: 1 CPU 2GB RAM 10 GB DISCO (Standard_A1_v2)
+## Instalación del cliente de azure (Caso MacOS)
+brew install azure-cli
 
-Mi cliente prefiere no perder servicio ante errores. La aplicación es muy sencilla y no requiere de muchos recursos para un buen rendimiento. El nodo master será el que haga el papel de NFS por ser un nodo de infraestructura. Los playbooks de ansible se lanzaran también desde el master ya que desde un equipo local sería ineficiente al tener que conectarse a máquinas remotas en un entorno cloud.
-Si hubiese elegido la configuración 1 master 1 worker tendría más rendimiento y el NFS no tendría sentido en la arquitectura ya que no habría necesidad de compartir ningún volumen entre nodos del cluster....porque no existe cluster como tal.
+[Otros casos](https://docs.microsoft.com/es-es/cli/azure/install-azure-cli)
+
+## az login 
+
+Haciendo login se crea un subscription id
+
+```json
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "sdfgsdfgsdf",
+    "id": "subscripcionxxxxx",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Azure para estudiantes",
+    "state": "Enabled",
+    "tenantId": "sdfgsdfgsdfg",
+    "user": {
+      "name": "aaaaaaaaa",
+      "type": "user"
+    }
+  }
+]
+```
+Después de crear el subscrition id se puede consultar mediante `az account list`
+
+## Service Principal
+```bash
+% az account set --subscription=subscripcionxxxxxxxxxx
+% az ad sp create-for-rbac --role="Contributor" --name "-cli"
+Creating 'Contributor' role assignment under scope '/subscriptions/subscripcionxxxxxxx'
+  Retrying role assignment creation: 1/36
+  Retrying role assignment creation: 2/36
+The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
+{
+  "appId": "8c41de0f-5bcc-43bd-9b91-711a77fbbcaa",
+  "displayName": "xxx-cli",
+  "name": "http://xxxx-cli",
+  "password": "xxxxxx",
+  "tenant": "xxxxxxx"
+}
+```

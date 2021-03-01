@@ -1,4 +1,4 @@
-# Security group
+# Security group. No es una configuración buena, pero por simplicidad se han abierto todos los puertos
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group
 
 resource "azurerm_network_security_group" "mySecGroup" {

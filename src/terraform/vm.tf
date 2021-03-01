@@ -1,4 +1,6 @@
-# Creamos una máquina virtual
+# Creamos una máquina virtual. Por cada una de las entradas del diccionario se crea
+# una máquina virtual accediendo a los componentes creados anteriormente. Además se 
+# obtiene el tamaño del servidor a crear también del diccionario
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
 
 resource "azurerm_linux_virtual_machine" "myVM" {
@@ -44,6 +46,11 @@ resource "azurerm_linux_virtual_machine" "myVM" {
 
 }
 
+
+# Configuración del apagado automático de las máquinas a las 22:00 de la noche
+# para que el gasto no se dispare.
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dev_test_global_vm_shutdown_schedule
+
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "shutdown" {
     for_each = var.lab2
     virtual_machine_id = azurerm_linux_virtual_machine.myVM[each.key].id
@@ -58,6 +65,7 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "shutdown" {
     }
 }
 
+# Creación de un disco estádar de 10 GB
 resource "azurerm_managed_disk" "nfsdisk" {
   name                 = "nfs-disk"
   location             = azurerm_resource_group.rg.location
@@ -67,6 +75,7 @@ resource "azurerm_managed_disk" "nfsdisk" {
   disk_size_gb         = 10
 }
 
+# Se vincula el disco a la máquina master dándole permisos de lectura/escritura
 resource "azurerm_virtual_machine_data_disk_attachment" "attachdisk" {
 
     managed_disk_id    = azurerm_managed_disk.nfsdisk.id
