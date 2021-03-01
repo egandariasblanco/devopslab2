@@ -65,7 +65,7 @@ metadata:
     nginx.ingress.kubernetes.io/add-base-url: "true"
 spec:
   rules:
-  - host: game.bar
+  - host: http://kubendikamaster.westeurope.cloudapp.azure.com
     http:
       paths:
       - path: /

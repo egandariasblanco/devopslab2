@@ -4,12 +4,14 @@ variable "location" {
   default = "West Europe"
 }
 
+# Nombre que se utilizará como prefijo
 variable "nombre" {
   type = string
   description = "Prefijo de nombre para todos los recursos creados"
   default = "kubendika"
 }
 
+# Diccionario para especificar las características de cada servidor
 variable "lab2" {
   description = "Map de las configuraciones."
   type        = map

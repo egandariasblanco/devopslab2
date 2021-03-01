@@ -12,10 +12,10 @@ terraform {
 # crea un service principal y rellena los siguientes datos para autenticar
 provider "azurerm" {
   features {}
-  subscription_id = "a797792f-5377-45a0-9437-9368deae73c7"
-  client_id = "8c41de0f-5bcc-43bd-9b91-711a77fbbcaa"
-  client_secret = "Fv8G.8S5ScIjycRC9X67NuN..agu2TOyBT"
-  tenant_id = "899789dc-202f-44b4-8472-a6d40f9eb440"
+  subscription_id = "aaaaaaaaaaaaaaaaaaaa"
+  client_id = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+  client_secret = "xxxxxxxxxxxxxxxxxxxxxxx"
+  tenant_id = "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
 }
 
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
