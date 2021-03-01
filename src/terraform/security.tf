@@ -13,7 +13,7 @@ resource "azurerm_network_security_group" "mySecGroup" {
         access                     = "Allow"
         protocol                   = "Tcp"
         source_port_range          = "*"
-        destination_port_range     = "22"
+        destination_port_range     = "*"
         source_address_prefix      = "*"
         destination_address_prefix = "*"
     }
@@ -22,6 +22,7 @@ resource "azurerm_network_security_group" "mySecGroup" {
         environment = "CP2"
     }
 }
+
 
 # Vinculamos el security group al interface de red
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association

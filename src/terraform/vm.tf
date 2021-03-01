@@ -57,3 +57,20 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "shutdown" {
         enabled         = false
     }
 }
+
+resource "azurerm_managed_disk" "nfsdisk" {
+  name                 = "nfs-disk"
+  location             = azurerm_resource_group.rg.location
+  resource_group_name  = azurerm_resource_group.rg.name
+  storage_account_type = "Standard_LRS"
+  create_option        = "Empty"
+  disk_size_gb         = 10
+}
+
+resource "azurerm_virtual_machine_data_disk_attachment" "attachdisk" {
+
+    managed_disk_id    = azurerm_managed_disk.nfsdisk.id
+    virtual_machine_id = azurerm_linux_virtual_machine.myVM["master"].id
+    lun                = "10"
+    caching            = "ReadWrite"
+}
