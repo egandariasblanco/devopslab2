@@ -1,0 +1,14 @@
+- name: Crear directorio .kube
+  file:
+    path: $HOME/.kube
+    state: directory
+
+- name: Permisos de lectura para el fichero
+  file:
+    path: /etc/kubernetes/admin.conf
+    mode: o+r
+
+- name: Copy file with owner and permissions
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: $HOME/.kube/config

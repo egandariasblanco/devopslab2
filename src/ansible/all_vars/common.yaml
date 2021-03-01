@@ -1,0 +1,14 @@
+rpms: ['chrony', 'wget', 'nfs-utils', 'nfs4-acl-tools' ]
+servers:
+    master:
+      type: "master"
+      ip: "10.0.1.10"
+      dns: master.azure
+    worker01:
+      type: "worker"
+      ip: "10.0.1.11"
+      dns: worker01.azure
+    worker02:
+      type: "worker"
+      ip: "10.0.1.12"
+      dns: worker02.azure

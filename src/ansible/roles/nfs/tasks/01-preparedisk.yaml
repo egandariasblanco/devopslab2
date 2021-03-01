@@ -1,0 +1,31 @@
+- name: Crear un volume group en /dev/sdc 
+  community.general.lvg:
+    vg: "{{ nfs_vg }}"
+    pvs: /dev/{{ nfs_disk }}
+
+- name: Crear un volumen logico
+  community.general.lvol:
+    vg: "{{ nfs_vg }}"
+    lv: "{{ nfs_lv }}"
+    force: yes
+    size: 2559
+
+- name: Crear el filesystem en xfs
+  community.general.filesystem:
+    fstype: xfs
+    dev: "/dev/{{ nfs_vg }}/{{ nfs_lv }}"
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ mount_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Mount an NFS volume
+  ansible.posix.mount:
+    src: "/dev/{{ nfs_vg }}/{{ nfs_lv }}"
+    path: "{{ mount_path }}"
+    opts: defaults
+    state: mounted
+    fstype: xfs
+ 

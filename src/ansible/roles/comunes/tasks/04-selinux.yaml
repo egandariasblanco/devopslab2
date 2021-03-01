@@ -1,0 +1,5 @@
+- name: Reemplazar entrada en selinux
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=disabled

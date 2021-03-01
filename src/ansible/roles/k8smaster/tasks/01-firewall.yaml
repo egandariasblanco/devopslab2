@@ -1,0 +1,25 @@
+- name: Configurar puertos trafico para kubernetes
+  ansible.posix.firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ firewall_ports }}"
+
+- name: Permitir conexion workers
+  ansible.posix.firewalld:
+    rich_rule: rule family=ipv4 source address={{ item.value.ip }}/32 accept
+    permanent: yes
+    state: enabled
+  loop: "{{ lookup('dict', servers) }}"
+  when: "'worker' in item.value.type"
+
+- name: Permitir conexion workers
+  ansible.posix.firewalld:
+    rich_rule: rule family=ipv4 source address=172.17.0.0/16 accept
+    permanent: yes
+    state: enabled
+
+- name: Recargar reglas de firewall
+  shell:
+    cmd: firewall-cmd --reload
+  

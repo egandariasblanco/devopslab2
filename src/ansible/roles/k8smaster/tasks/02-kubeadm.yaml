@@ -1,0 +1,15 @@
+- name: Configurar kudeadm 1
+  shell:
+    cmd: kubeadm config images pull
+
+- name: Configurar kudeadm 2
+  shell:
+    cmd: kubeadm init --pod-network-cidr {{ cidr_ip }}
+  register: kudeadm_output
+
+- name: Sacar por pantalla el log de init
+  debug: msg="{{ kudeadm_output }}"
+  delegate_to: 127.0.0.1
+
+- name: Guardamos la salida para poder utilizarla en el join de los workers
+  local_action: copy content="{{ kudeadm_output.stdout_lines }}" dest={{ token_file }}

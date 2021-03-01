@@ -1,0 +1,4 @@
+- include_tasks: 01-preparedisk.yaml
+- include_tasks: 02-startnfs.yaml
+- include_tasks: 03-sharenfs.yaml
+- include_tasks: 04-reglasfirewall.yaml

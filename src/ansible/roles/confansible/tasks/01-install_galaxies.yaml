@@ -1,0 +1,5 @@
+- name: Instalar dependencias de playbooks
+  shell:
+    cmd: ansible-galaxy collection install {{ item }}
+  with_items:
+    - "{{ galaxies }}"

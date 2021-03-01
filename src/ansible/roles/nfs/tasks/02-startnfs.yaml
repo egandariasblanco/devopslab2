@@ -1,0 +1,11 @@
+- name: install packages
+  dnf:
+    name: "{{ rpms_nfs }}"
+    state: latest
+
+- name: Arrancar servicio nfs
+  systemd:
+    name: nfs-server
+    state: started
+    enabled: yes
+    masked: no

@@ -1,0 +1,6 @@
+- name: Arrancar servicio chronyd
+  systemd:
+    name: chronyd
+    state: started
+    enabled: yes
+    masked: no

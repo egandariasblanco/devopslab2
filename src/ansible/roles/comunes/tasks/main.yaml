@@ -1,0 +1,7 @@
+- include_tasks: 01-install_pack.yaml
+- include_tasks: 02-services.yaml
+- include_tasks: 03-commands.yaml
+- include_tasks: 04-selinux.yaml
+- include_tasks: 05-dnsresolution.yaml
+- include_tasks: 06-comunicacionpods.yaml
+- include_tasks: 07-swap.yaml

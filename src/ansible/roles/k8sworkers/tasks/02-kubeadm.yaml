@@ -1,0 +1,6 @@
+- name: Ejecutar join al master
+  shell: cat pod_network_token | tail -2
+
+
+
+  

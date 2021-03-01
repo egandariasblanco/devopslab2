@@ -2,13 +2,12 @@
 ansible_python_interpreter=/usr/bin/python3
 ansible_user=ansible
 
-[kubernetes-master]
-kubendikamaster.westeurope.cloudapp.azure.com
+[master]
+10.0.1.10
 
-[kubernetes-workers]
-kubendikaworker1.westeurope.cloudapp.azure.com
-kubendikaworker2.westeurope.cloudapp.azure.com
+[workers]
+10.0.1.11
+10.0.1.12
 
-[kubernetes:childre]
-kubernetes-master
-kubernetes-workers
+[nfs]
+10.0.1.10

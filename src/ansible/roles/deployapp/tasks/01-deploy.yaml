@@ -1,0 +1,3 @@
+- name: Desplegar aplicacion
+  shell:
+    cmd: kubectl apply -f lablocal/playbooks/webapp/deploy2048.yaml

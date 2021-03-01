@@ -1,0 +1,10 @@
+- name: Permitir trafico para nfs
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ firewall_services }}"
+
+- name: Recargar reglas de firewall
+  shell:
+    cmd: firewall-cmd --reload

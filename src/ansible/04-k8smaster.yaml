@@ -1,0 +1,9 @@
+- name: Configuracion master
+  hosts: master
+  become: yes
+  vars_files:
+    - "all_vars/k8smaster.yaml"
+    - "all_vars/common.yaml"
+  gather_facts: false
+  roles:
+    - k8smaster

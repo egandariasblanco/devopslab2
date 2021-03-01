@@ -1,0 +1,8 @@
+- name: Configuracion usuario administrador del cluster de k8s
+  hosts: master
+  become: true
+  vars_files:
+    - "all_vars/common.yaml"
+  gather_facts: false
+  roles:
+    - deployapp

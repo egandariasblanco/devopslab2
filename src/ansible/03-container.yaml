@@ -1,0 +1,8 @@
+- name: Configuracion contenedores
+  hosts: all
+  become: yes
+  vars_files:
+    - "all_vars/container.yaml"
+  gather_facts: false
+  roles:
+    - containers

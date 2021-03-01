@@ -1,0 +1,9 @@
+- name: Configurar zona horaria
+  shell:
+    cmd: timedatectl set-timezone Europe/Madrid
+
+- name: Configurar sincronizacion horaria
+  shell:
+    cmd: timedatectl set-ntp true
+
+  

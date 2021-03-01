@@ -1,0 +1,9 @@
+- name: Deshabilitar swap
+  shell:
+    cmd: swapoff -a
+
+- name: Añadir exports de nfs
+  lineinfile:
+    path: /etc/fstab   
+    regexp: 'swap'
+    state: absent

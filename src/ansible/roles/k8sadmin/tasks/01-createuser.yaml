@@ -1,0 +1,24 @@
+- name: Añadir usuairo kubeadmin
+  ansible.builtin.user:
+    name: kubeadmin
+    home: /home/kubeadmin
+    comment: k8s admin
+    password: "{{ password }}"
+
+- name: Crear directorio .kube
+  file:
+    path: /home/kubeadmin
+    state: directory
+
+- name: Copy file with owner and permissions
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    user: kubeadmin
+    group: kubeadmin
+
+- name: Reemplazar entrada en selinux
+  lineinfile:
+    path: /etc/sudoers.d/kubeadmin
+    create: yes
+    line: "ALL            ALL = (ALL) NOPASSWD: ALL"

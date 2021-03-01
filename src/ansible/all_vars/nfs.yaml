@@ -1,0 +1,8 @@
+rpms_nfs: ['nfs4-acl-tools', 'net-tools', 'nfs-utils']
+
+firewall_services: [ "nfs", "rpc-bind", "mountd" ]
+
+nfs_disk: "sdc"
+nfs_vg: "data_vg" 
+nfs_lv: "nfs_lv"
+mount_path: "/srv/nfs"

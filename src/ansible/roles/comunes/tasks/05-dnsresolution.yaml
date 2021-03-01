@@ -1,0 +1,5 @@
+- name: Añadir resolucion dns
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item.value.ip }} {{ item.key }} {{ item.value.dns }}"
+  loop: "{{ lookup('dict', servers) }}"

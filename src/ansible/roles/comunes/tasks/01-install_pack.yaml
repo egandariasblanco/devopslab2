@@ -1,0 +1,4 @@
+- name: install packages
+  dnf:
+    name: "{{ rpms }}"
+    state: latest

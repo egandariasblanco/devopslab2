@@ -1,0 +1,7 @@
+- name: Configuracion ansible
+  hosts: master
+  vars_files:
+    - "all_vars/galaxies.yaml"
+  gather_facts: false
+  roles:
+    - confansible
