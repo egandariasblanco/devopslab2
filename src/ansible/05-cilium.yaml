@@ -1,0 +1,8 @@
+- name: Instalacion calico
+  hosts: master
+  become: yes
+  vars_files:
+    - "all_vars/k8smaster.yaml"
+  gather_facts: false
+  roles:
+    - cilium
