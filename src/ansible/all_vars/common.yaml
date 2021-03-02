@@ -1,4 +1,8 @@
+# rpm de instalación común a todos los nodos
 rpms: ['chrony', 'wget', 'nfs-utils', 'nfs4-acl-tools' ]
+
+# Valores a configurar con los datos de los servidores creados
+# mediante terraform o los ya existentes
 servers:
     master:
       type: "master"

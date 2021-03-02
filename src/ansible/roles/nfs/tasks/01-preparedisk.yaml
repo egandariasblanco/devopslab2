@@ -15,13 +15,13 @@
     fstype: xfs
     dev: "/dev/{{ nfs_vg }}/{{ nfs_lv }}"
 
-- name: Create a directory if it does not exist
+- name: Crear directorio si no existe
   ansible.builtin.file:
     path: "{{ mount_path }}"
     state: directory
     mode: '0755'
 
-- name: Mount an NFS volume
+- name: Montar el volumen NFS
   ansible.posix.mount:
     src: "/dev/{{ nfs_vg }}/{{ nfs_lv }}"
     path: "{{ mount_path }}"

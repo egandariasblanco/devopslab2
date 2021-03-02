@@ -1,3 +1,7 @@
+# Configuración para el uso de docker y kubernetes
+# directorio roles/containers/tasks
+# - instalar docker
+# - instalar kubernetes
 - name: Configuracion contenedores
   hosts: all
   become: yes

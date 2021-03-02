@@ -1,3 +1,9 @@
+# Configuración en el nodo master del servidor NFS
+# directorio roles/nfs/tasks
+# - preparar el disco con sus VG y su LV
+# - instalar y arrancar servicio nfs
+# - configurar los exports para compartir el volumen
+# - configurar reglas de firewall
 - name: Configuracion nfs
   hosts: master
   become: yes

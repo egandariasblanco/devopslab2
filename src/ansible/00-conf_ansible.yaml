@@ -1,3 +1,5 @@
+# Algunos de los módulos utilizados no están en el paquete
+# básico, así que hay que hacer una instalación antes de utilizarlos
 - name: Configuracion ansible
   hosts: master
   vars_files:

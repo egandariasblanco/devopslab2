@@ -1,3 +1,8 @@
+# Configuración del kubernetes en el nodo master
+# directorio roles/k8smaster/tasks
+# - configurar reglas de firewall
+# - ejecutar kubeadm init
+# - copiar la configuración de kubernetes a la home de root
 - name: Configuracion master
   hosts: master
   become: yes

@@ -1,3 +1,8 @@
+# Configuración de los workers para conectarse al cluster de kubernetes
+# directorio roles/k8sworkers/tasks
+# - configuración de reglas de firewall
+# - ejecución del join (ojo copiar en 02-kubeadm.yaml el comando obtenido en el paso 04-k8smaster.yaml)
+# y que se encuentra en la última línea del fichero pod_network_token
 - name: Configuracion workers
   hosts: workers
   become: yes

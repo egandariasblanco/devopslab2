@@ -1,2 +1,3 @@
+# RPM de instalación de docker y kubernetes
 rpm_docker: [ "docker-ce-19.03.14-3.el8", "containerd.io"]
 rpm_k8s: ["kubelet", "kubeadm", "kubectl"]

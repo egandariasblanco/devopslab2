@@ -1,3 +1,6 @@
+# Creación de un usuario administrador del cluster
+# directorio roles/k8sadmin/tasks
+# - creación del usuario
 - name: Configuracion usuario administrador del cluster de k8s
   hosts: master
   become: true

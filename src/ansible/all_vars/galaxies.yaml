@@ -1,1 +1,2 @@
+# Colecciones a instalar para ansible
 galaxies: [ "ansible.posix", "community.general"]

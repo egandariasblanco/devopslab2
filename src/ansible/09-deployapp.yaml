@@ -1,4 +1,7 @@
-- name: Configuracion usuario administrador del cluster de k8s
+# Despliegue de aplicación 2048 desde el yaml de configuración en webapp/deploy2048.yaml
+# directorio roles/deployapp/tasks
+# - despliegue mediante kubectl (se han añadido volumenes y una anotación en ingress)
+- name: Despliegue de aplicación 2048
   hosts: master
   become: true
   vars_files:

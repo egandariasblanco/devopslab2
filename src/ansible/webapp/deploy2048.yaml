@@ -61,10 +61,12 @@ metadata:
   namespace: game
   labels:
     app: game
+  # Añadida la anotación para que se sirvan correctamente los estáticos
   annotations:
     nginx.ingress.kubernetes.io/add-base-url: "true"
 spec:
   rules:
+  # Sustituir el host con el nombre que se desee
   - host: http://kubendikamaster.westeurope.cloudapp.azure.com
     http:
       paths:
@@ -85,6 +87,8 @@ data:
   servers-increment: "42"
   ssl-redirect: "OFF"
 ---
+# Aunque no se utilice se añade un volumen al contenedor
+# para comprobar que el nfs funciona correctamentes
 apiVersion: v1
 kind: PersistentVolume
 metadata:

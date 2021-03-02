@@ -1,3 +1,6 @@
+# Instalación de Ingress para el enrutamiento de peticiones con nombres de host
+# directorio roles/ingress/tasks
+# - instalación de ingress
 - name: Instalacion de Ingress
   hosts: master
   become: yes

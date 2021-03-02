@@ -1,7 +1,10 @@
+# Paquetes necesarios para montar el servidor NFS
 rpms_nfs: ['nfs4-acl-tools', 'net-tools', 'nfs-utils']
 
+# Servicios a permitir en el firewall
 firewall_services: [ "nfs", "rpc-bind", "mountd" ]
 
+# Configuración de los path y nombres para disco de nfs
 nfs_disk: "sdc"
 nfs_vg: "data_vg" 
 nfs_lv: "nfs_lv"

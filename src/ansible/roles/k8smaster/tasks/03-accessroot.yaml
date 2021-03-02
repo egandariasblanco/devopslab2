@@ -3,6 +3,8 @@
     path: $HOME/.kube
     state: directory
 
+# Es necesario cambiar los permisos antes de copiar el fichero
+# añadiendo permisos de lectura para otros
 - name: Permisos de lectura para el fichero
   file:
     path: /etc/kubernetes/admin.conf

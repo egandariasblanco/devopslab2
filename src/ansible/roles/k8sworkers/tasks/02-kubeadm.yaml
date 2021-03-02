@@ -1,5 +1,7 @@
+# Copiar el comando join que estará en la última línea
+# del fichero pod_network_token
 - name: Ejecutar join al master
-  shell: cat pod_network_token | tail -2
+  shell: kubeadm join 10.0.1.10:6443 --token 1nhuef.knc7atp1e66iwq67 --discovery-token-ca-cert-hash sha256:97045b7a13213b3566b1959c93aeb3c2133787a50e5197956ec1d2100c119ff5
 
 
 
