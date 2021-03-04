@@ -28,7 +28,7 @@ Copiar las claves
 Recoger la salida para sustituir en el fichero de join de los workers roles/k8sworkers/tasks/02-kubeadm.yaml
 
 ## Configuración cilium
-`ansible-playbook -i hosts -l master 05-calico.yaml`
+`ansible-playbook -i hosts -l master 05-cilium.yaml`
 ```bash
 [ansible@master-vm playbooks]$ sudo kubectl get pods -A
 NAMESPACE     NAME                                READY   STATUS    RESTARTS   AGE
