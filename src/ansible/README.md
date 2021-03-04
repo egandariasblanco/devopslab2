@@ -73,5 +73,7 @@ kube-system          kube-proxy-zgpc4                           1/1     Running 
 kube-system          kube-scheduler-master-vm                   1/1     Running   0          10m
 ```
 ## Crear el usuario kubeadmin. 
-> Hay que crear un fichero con la contraseña
+> Hay que crear un fichero con la contraseña (passfile) antes de lanzar el 
+> siguiente comando. [How to](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-individual-variables-with-ansible-vault)
+
 `ansible-playbook -i hosts -l master 08-k8sadmin.yaml --vault-password-file passfile`
