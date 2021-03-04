@@ -13,7 +13,10 @@ Copiar las claves
 ## Instalación de collections necesarios para la ejecución de playbooks
 `ansible-playbook -i hosts -l master 00-conf_ansible.yaml`
 
-## Firewall parado así que hay que arrancarlo para que no den error las task de reglas de firewall
+## Configuración inicial de los nodos
+>En mi caso el firewall de sistema estaba parado así que hay que arrancarlo para que no den error las task de reglas de firewall
+> `sudo systemctl start firewalld`
+
 `ansible-playbook -i hosts -l all 01-conf_ini.yaml`
 
 ## Configuración de nfs
@@ -25,7 +28,7 @@ Copiar las claves
 ## Configuración nodo master
 `ansible-playbook -i hosts -l master 04-k8smaster.yaml`
 
-Recoger la salida para sustituir en el fichero de join de los workers roles/k8sworkers/tasks/02-kubeadm.yaml
+>Recoger la salida para sustituir en el fichero de join de los workers roles/k8sworkers/tasks/02-kubeadm.yaml
 
 ## Configuración cilium
 `ansible-playbook -i hosts -l master 05-cilium.yaml`
