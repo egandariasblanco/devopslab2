@@ -72,5 +72,6 @@ kube-system          kube-proxy-q7q6h                           1/1     Running 
 kube-system          kube-proxy-zgpc4                           1/1     Running   0          4m59s
 kube-system          kube-scheduler-master-vm                   1/1     Running   0          10m
 ```
-## Crear el usuario kubeadmin. Hay que crear un fichero con la contraseña
+## Crear el usuario kubeadmin. 
+> Hay que crear un fichero con la contraseña
 `ansible-playbook -i hosts -l master 08-k8sadmin.yaml --vault-password-file passfile`
